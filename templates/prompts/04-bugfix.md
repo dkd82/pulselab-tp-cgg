@@ -1,21 +1,21 @@
-# Prompt template: bug fix (v1.0)
+# Modèle de prompt : correction de bug (v1.0)
 
-Use with: a coding agent (Kilo Code: *Code*), after the cause is known.
+À utiliser avec : un agent de code (Kilo Code : *Code*), une fois la cause connue.
 
-## Goal
-Fix: {{bug_summary}}. Root cause (found and confirmed by me): {{root_cause}}.
+## Objectif
+Corrigez : {{bug_summary}}. Cause racine (trouvée et confirmée par moi) : {{root_cause}}.
 
-## Context
-- Stack: {{language_and_version}}, {{framework}}. Files involved: {{files}}.
-- Reproduction (command or test): {{repro}}. Expected vs actual: {{expected}} / {{actual}}.
+## Contexte
+- Stack : {{language_and_version}}, {{framework}}. Fichiers concernés : {{files}}.
+- Reproduction (commande ou test) : {{repro}}. Attendu vs obtenu : {{expected}} / {{actual}}.
 
-## Constraints
-- Write a failing test that reproduces the bug BEFORE changing the code.
-- Smallest possible change, at the cause (not a workaround in the caller). Do not touch unrelated files. Do not edit existing tests.
-- If the cause is a scientific convention (units, dB, windowing), ask me instead of choosing.
+## Contraintes
+- Écrivez un test en échec qui reproduit le bug AVANT de changer le code.
+- Le plus petit changement possible, à la cause (pas un contournement chez l'appelant). Ne touchez pas aux fichiers sans rapport. Ne modifiez pas les tests existants.
+- Si la cause est une convention scientifique (unités, dB, fenêtrage), demandez-moi au lieu de choisir.
 
 ## Format
-1. The failing test. 2. The fix as a diff. 3. Two sentences on why it removes the cause.
+1. Le test en échec. 2. Le correctif sous forme de diff. 3. Deux phrases expliquant pourquoi il supprime la cause.
 
-## Verification
-- Show the output of the test suite. List other functions that could have the same problem, and check them with a search.
+## Vérification
+- Montrez la sortie de la suite de tests. Listez les autres fonctions qui pourraient avoir le même problème, et vérifiez-les avec une recherche.

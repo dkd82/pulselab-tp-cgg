@@ -1,26 +1,26 @@
-# Prompt template: property-based tests (v1.0)
+# Modèle de prompt : tests par propriétés (v1.0)
 
-Use with: a coding agent (Kilo Code: *Code*). Requires `hypothesis`; otherwise ask for seeded random loops.
+À utiliser avec : un agent de code (Kilo Code : *Code*). Nécessite `hypothesis` ; sinon, demandez des boucles aléatoires avec graine fixée.
 
-## Goal
-Write property-based tests for `{{function}}` in `tests/test_properties.py`.
+## Objectif
+Écrivez des tests par propriétés pour `{{function}}` dans `tests/test_properties.py`.
 
-## Context
-- Module: `{{module}}`. Domain of valid inputs: {{valid_inputs_with_ranges}}.
+## Contexte
+- Module : `{{module}}`. Domaine des entrées valides : {{valid_inputs_with_ranges}}.
 
-## Constraints
-- `hypothesis` with `max_examples=50` and `deadline=None`; skip the module with `pytest.importorskip("hypothesis")` if it is not installed.
-- Finite floats in a bounded range (no NaN, no infinity) unless the property is about them. Tolerances relative to the data scale.
-- Tests only: do not modify the source.
+## Contraintes
+- `hypothesis` avec `max_examples=50` et `deadline=None` ; ignorez le module avec `pytest.importorskip("hypothesis")` s'il n'est pas installé.
+- Des flottants finis dans une plage bornée (pas de NaN, pas d'infini) sauf si la propriété les concerne. Tolérances relatives à l'échelle des données.
+- Tests uniquement : ne modifiez pas le source.
 
-## Examples of properties
-- The input is not modified. Applying the function twice gives the same result (idempotence).
-- A known analytical result holds for any parameter in the valid range.
-- Invariance: {{invariance_e_g_adding_an_offset_does_not_change_it}}.
-- Output ordering, spacing or bounds hold for any input.
+## Exemples de propriétés
+- L'entrée n'est pas modifiée. Appliquer la fonction deux fois donne le même résultat (idempotence).
+- Un résultat analytique connu est vérifié pour tout paramètre dans la plage valide.
+- Invariance : {{invariance_e_g_adding_an_offset_does_not_change_it}}.
+- L'ordre, l'espacement ou les bornes de la sortie sont respectés pour toute entrée.
 
 ## Format
-One test per property, with a docstring that states the property in one sentence.
+Un test par propriété, avec une docstring qui énonce la propriété en une phrase.
 
-## Verification
-Run `python -m pytest -q` and show the result. Tell me the input ranges each test explores.
+## Vérification
+Lancez `python -m pytest -q` et montrez le résultat. Dites-moi les plages d'entrée que chaque test explore.

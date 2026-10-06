@@ -1,19 +1,19 @@
-# Prompt template: review a diff (v1.0)
+# Modèle de prompt : revue d'un diff (v1.0)
 
-Use with: a read-only agent in a **fresh session** (Kilo Code: *Ask* with `@git-changes`, or the `reviewer` subagent of the project kit).
+À utiliser avec : un agent en lecture seule dans une **session neuve** (Kilo Code : *Ask* avec `@git-changes`, ou le sous-agent `reviewer` du kit de projet).
 
-## Goal
-Review the changes below as a first, ADVISORY reviewer. A human decides.
+## Objectif
+Relisez les changements ci-dessous en tant que premier relecteur, CONSULTATIF. C'est un humain qui décide.
 
-## Context
-- Project conventions: the project instruction file. Review criteria: `{{path_to_REVIEW_CRITERIA.md}}`.
-- The changes: {{the_diff_or_@git-changes}}
+## Contexte
+- Conventions du projet : le fichier d'instructions du projet. Critères de revue : `{{path_to_REVIEW_CRITERIA.md}}`.
+- Les changements : {{the_diff_or_@git-changes}}
 
-## Constraints
-- At most 7 comments, most severe first. Do not rewrite the code. Do not comment on formatting.
+## Contraintes
+- 7 commentaires au maximum, du plus grave au moins grave. Ne réécrivez pas le code. Ne commentez pas le formatage.
 
 ## Format
-For each comment: file:line, severity (high / medium / low), the problem, a one-sentence fix. Or "no issue found".
+Pour chaque commentaire : fichier:ligne, gravité (haute / moyenne / basse), le problème, un correctif en une phrase. Ou « aucun problème trouvé ».
 
-## Verification
-Say which parts of the change you could NOT judge (missing context), so that I review them myself.
+## Vérification
+Dites quelles parties du changement vous n'avez PAS pu juger (contexte manquant), pour que je les relise moi-même.

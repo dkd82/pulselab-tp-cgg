@@ -1,9 +1,9 @@
-# Testing rules
+# Règles de test
 
-- Every test asserts a real value. No `assert x is not None`, no `assert x > 0` alone.
-- Never compute the expected value with the code under test.
-- Use `pytest.approx` with a tolerance you can justify in a comment.
-- Prefer analytical checks (a known exponential must give back its time constant, a Gaussian of width sigma has FWHM 2*sqrt(2*ln 2)*sigma).
-- Before a refactoring, write characterization tests (golden file + an oracle copy of the current code).
-- Never edit `tests/golden/*` or weaken an assertion to make a test pass. If a golden value must change, stop and ask.
-- After writing tests, break the code on purpose (change one operator or constant): at least one test must fail.
+- Chaque test vérifie une vraie valeur. Pas de `assert x is not None`, pas de `assert x > 0` seul.
+- Ne calculez jamais la valeur attendue avec le code testé.
+- Utilisez `pytest.approx` avec une tolérance que vous pouvez justifier dans un commentaire.
+- Privilégiez les vérifications analytiques (une exponentielle connue doit redonner sa constante de temps, une gaussienne de largeur sigma a une FWHM de 2*sqrt(2*ln 2)*sigma).
+- Avant un refactoring, écrivez des tests de caractérisation (fichier golden + une copie oracle du code actuel).
+- Ne modifiez jamais `tests/golden/*` et n'affaiblissez jamais une assertion pour faire passer un test. Si une valeur golden doit changer, arrêtez-vous et demandez.
+- Après avoir écrit des tests, cassez le code volontairement (changez un opérateur ou une constante) : au moins un test doit échouer.

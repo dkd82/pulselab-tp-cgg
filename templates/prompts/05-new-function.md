@@ -1,25 +1,25 @@
-# Prompt template: new numerical function (v1.0)
+# Modèle de prompt : nouvelle fonction numérique (v1.0)
 
-Use with: a coding agent (Kilo Code: *Code*).
+À utiliser avec : un agent de code (Kilo Code : *Code*).
 
-## Goal
-Add `{{function_name}}({{signature}})` in `{{module}}`. It {{purpose}}.
+## Objectif
+Ajoutez `{{function_name}}({{signature}})` dans `{{module}}`. Elle {{purpose}}.
 
-## Context
-- Inputs: {{inputs_with_units}}. Output: {{output_with_units}}.
-- An existing function to imitate for style: {{example_function}}.
+## Contexte
+- Entrées : {{inputs_with_units}}. Sortie : {{output_with_units}}.
+- Une fonction existante à imiter pour le style : {{example_function}}.
 
-## Constraints
-- {{allowed_libraries}} only, no new dependency. Vectorized unless a loop is justified in a comment.
-- Do not modify the inputs in place. Define the behaviour for empty input and for NaN: {{nan_and_empty_policy}}.
+## Contraintes
+- {{allowed_libraries}} uniquement, aucune nouvelle dépendance. Vectorisé, sauf si une boucle est justifiée dans un commentaire.
+- Ne modifiez pas les entrées en place. Définissez le comportement pour une entrée vide et pour NaN : {{nan_and_empty_policy}}.
 
-## Examples
-- Analytical check: {{analytical_check}}
-- Example: {{example_input}} gives {{example_output}}.
+## Exemples
+- Vérification analytique : {{analytical_check}}
+- Exemple : {{example_input}} donne {{example_output}}.
 
 ## Format
-The function with a docstring that states the units, then the tests, then a short list of your assumptions.
+La fonction avec une docstring qui précise les unités, puis les tests, puis une courte liste de vos hypothèses.
 
-## Verification
-- List your assumptions and any question you have BEFORE writing code.
-- The tests must include the analytical check and one edge case. Run them and show the result.
+## Vérification
+- Listez vos hypothèses et toute question que vous avez AVANT d'écrire du code.
+- Les tests doivent inclure la vérification analytique et un cas limite. Lancez-les et montrez le résultat.

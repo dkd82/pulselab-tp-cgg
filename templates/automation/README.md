@@ -1,34 +1,34 @@
-# Automation templates
+# Modèles d'automatisation
 
-| File | What it is | Status |
+| Fichier | Ce que c'est | Statut |
 |---|---|---|
-| `precommit.py` | Pre-commit hook: **blocking** deterministic checks (secret scan, syntax, fast tests) + an **advisory** AI review that can never block | Tested in a scratch git repository with six scenarios (below) |
-| `REVIEW_CRITERIA.md` | Criteria given to an AI reviewer or a pull-request bot: what to check, what to ignore, output format | Text file |
-| `ci-example.yml` | A CI draft with a gating `tests` job and an advisory, disabled `ai-review` job (GitHub Actions syntax) | YAML syntax checked; **never executed**. Adapt it to your CI system |
+| `precommit.py` | Hook pre-commit : contrôles déterministes **bloquants** (scan de secrets, syntaxe, tests rapides) + une revue IA **consultative** qui ne peut jamais bloquer | Testé dans un dépôt git temporaire avec six scénarios (ci-dessous) |
+| `REVIEW_CRITERIA.md` | Critères donnés à un relecteur IA ou à un bot de pull request : quoi vérifier, quoi ignorer, format de sortie | Fichier texte |
+| `ci-example.yml` | Un brouillon de CI avec un job `tests` qui fait barrière et un job `ai-review` consultatif, désactivé (syntaxe GitHub Actions) | Syntaxe YAML vérifiée ; **jamais exécuté**. À adapter à votre système de CI |
 
-## Principle
+## Principe
 
-**Deterministic checks are the gate; AI advises.** An AI step must never decide the exit code of a commit or a build, must be fail-safe (errors and timeouts only print a warning), and must not receive more data than necessary.
+**Les contrôles déterministes font barrière ; l'IA conseille.** Une étape IA ne doit jamais décider du code de sortie d'un commit ou d'un build, doit être sans danger en cas d'échec (erreurs et timeouts n'affichent qu'un avertissement), et ne doit pas recevoir plus de données que nécessaire.
 
-## Install the hook
+## Installer le hook
 
-1. Copy `precommit.py` to `tools/precommit.py` in your repository (the script finds the repository root from its own location).
-2. Edit the constants at the top: `SOURCE_DIRS` (folders to syntax-check) and the test command if needed.
-3. Run `python tools/precommit.py --install`: it writes `.git/hooks/pre-commit`.
-4. Optional advice from an AI tool: set `AI_REVIEW_CMD` to a command that reads the staged diff on **stdin** and prints comments on **stdout** (use a company-approved tool), and optionally `AI_REVIEW_TIMEOUT` (seconds, default 60).
+1. Copiez `precommit.py` vers `tools/precommit.py` dans votre dépôt (le script retrouve la racine du dépôt à partir de son propre emplacement).
+2. Modifiez les constantes en haut du fichier : `SOURCE_DIRS` (dossiers dont la syntaxe est vérifiée) et, si besoin, la commande de test.
+3. Lancez `python tools/precommit.py --install` : cela écrit `.git/hooks/pre-commit`.
+4. Conseil facultatif d'un outil IA : définissez `AI_REVIEW_CMD` avec une commande qui lit le diff indexé sur **stdin** et affiche des commentaires sur **stdout** (utilisez un outil approuvé par l'entreprise), et éventuellement `AI_REVIEW_TIMEOUT` (secondes, 60 par défaut).
 
-## The six scenarios to replay in a scratch repository
+## Les six scénarios à rejouer dans un dépôt temporaire
 
-| # | Situation | Expected |
+| # | Situation | Attendu |
 |---|---|---|
-| S1 | clean commit | passes |
-| S2 | a test is broken | commit **blocked**, failing test shown |
-| S3 | a staged file contains `API_KEY = "abcd1234efgh5678"` | commit **blocked**, the line is shown |
-| S4 | the AI command prints advice | advice shown, commit passes |
-| S5 | the AI command exits with an error | warning shown, commit passes |
-| S6 | the AI command is slower than the timeout | warning shown, commit passes |
+| S1 | commit propre | passe |
+| S2 | un test est cassé | commit **bloqué**, test en échec affiché |
+| S3 | un fichier indexé contient `API_KEY = "abcd1234efgh5678"` | commit **bloqué**, la ligne est affichée |
+| S4 | la commande IA affiche un conseil | conseil affiché, le commit passe |
+| S5 | la commande IA se termine en erreur | avertissement affiché, le commit passe |
+| S6 | la commande IA est plus lente que le timeout | avertissement affiché, le commit passe |
 
-## Before you use it
+## Avant de l'utiliser
 
-- What does the AI command **receive**? (the staged diff, truncated to 20 000 characters.) Could it contain secrets, unpublished results, personal or confidential data? Where does the command run and where does the data go? Who approved the tool for this data?
-- The secret scan is two simple regular expressions: it is predictable but **not** a complete secret scanner.
+- Que **reçoit** la commande IA ? (le diff indexé, tronqué à 20 000 caractères.) Pourrait-il contenir des secrets, des résultats non publiés, des données personnelles ou confidentielles ? Où la commande s'exécute-t-elle et où vont les données ? Qui a approuvé l'outil pour ces données ?
+- Le scan de secrets se résume à deux expressions régulières simples : il est prévisible mais **n'est pas** un scanner de secrets complet.

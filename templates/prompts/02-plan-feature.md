@@ -1,23 +1,23 @@
-# Prompt template: plan a feature (v1.0)
+# Modèle de prompt : planifier une fonctionnalité (v1.0)
 
-Use with: a planning agent (Kilo Code: *Plan*). Plan only, no code.
+À utiliser avec : un agent de planification (Kilo Code : *Plan*). Plan uniquement, pas de code.
 
-## Goal
+## Objectif
 {{feature_in_one_sentence}}
 
-## Context
-- Project: {{project}}. Files I think are involved: {{files}}.
-- Acceptance criteria:
+## Contexte
+- Projet : {{project}}. Fichiers que je pense concernés : {{files}}.
+- Critères d'acceptation :
   - AC1 {{criterion_1}}
   - AC2 {{criterion_2}}
   - AC3 {{criterion_3}}
 
-## Constraints
-- Plan only: do not write or edit code yet.
-- Smallest change that satisfies the criteria. No new dependency. Existing outputs must not change: {{what_must_not_change}}.
+## Contraintes
+- Plan uniquement : n'écrivez ni ne modifiez encore de code.
+- Le plus petit changement qui satisfait les critères. Aucune nouvelle dépendance. Les sorties existantes ne doivent pas changer : {{what_must_not_change}}.
 
 ## Format
-Numbered steps in a safe order (types and helpers first, plumbing next, command line last). For each step: the files touched and how to check it (a command or a test).
+Des étapes numérotées dans un ordre sûr (types et utilitaires d'abord, câblage ensuite, ligne de commande en dernier). Pour chaque étape : les fichiers touchés et comment la vérifier (une commande ou un test).
 
-## Verification
-List the risks and the questions you need answered before implementing.
+## Vérification
+Listez les risques et les questions auxquelles vous avez besoin que je réponde avant d'implémenter.

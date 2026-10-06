@@ -1,9 +1,9 @@
-# Review checklist for AI-assisted changes
+# Checklist de revue pour les changements assistés par IA
 
-- [ ] I understand every changed line.
-- [ ] Tests pass AND at least one test fails if I break the new code (checked).
-- [ ] No input array is modified in place; units and dB convention are right.
-- [ ] No new dependency, absolute path, secret or large file.
-- [ ] Behaviour changes are described in the pull request; golden files changed only on purpose.
-- [ ] The diff does not touch files outside the scope of the task.
-- [ ] I read the test diff first: no expected value changed just to make a test pass.
+- [ ] Je comprends chaque ligne modifiée.
+- [ ] Les tests passent ET au moins un test échoue si je casse le nouveau code (vérifié).
+- [ ] Aucun tableau d'entrée n'est modifié en place ; les unités et la convention dB sont correctes.
+- [ ] Pas de nouvelle dépendance, de chemin absolu, de secret ni de gros fichier.
+- [ ] Les changements de comportement sont décrits dans la pull request ; les fichiers golden ne changent que volontairement.
+- [ ] Le diff ne touche pas de fichiers hors du périmètre de la tâche.
+- [ ] J'ai lu le diff des tests en premier : aucune valeur attendue n'a été changée juste pour faire passer un test.

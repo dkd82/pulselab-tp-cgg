@@ -1,6 +1,6 @@
-# DRAFT, never executed: syntax checked only.
-# Illustrative CI pipeline (GitHub Actions syntax). Adapt it to YOUR CI system.
-# Deterministic checks are the gate. The AI review job is advisory only.
+# BROUILLON, jamais exécuté : syntaxe vérifiée uniquement.
+# Pipeline de CI illustratif (syntaxe GitHub Actions). Adaptez-le à VOTRE système de CI.
+# Les contrôles déterministes font barrière. Le job de revue IA est uniquement consultatif.
 name: ci
 
 on:
@@ -18,20 +18,20 @@ jobs:
       - run: python -m pytest -q --cov=pulselab --cov-fail-under=80
 
   ai-review:
-    # Advisory: never blocks the merge. Disabled until your approved AI tool is configured.
+    # Consultatif : ne bloque jamais le merge. Désactivé tant que votre outil IA approuvé n'est pas configuré.
     if: false
     needs: tests
     runs-on: ubuntu-latest
     continue-on-error: true
     permissions:
       contents: read
-      pull-requests: write        # only to post comments
+      pull-requests: write        # uniquement pour publier des commentaires
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Review the diff with the approved tool
+      - name: Relire le diff avec l'outil approuvé
         run: |
           git diff origin/${{ github.base_ref }}...HEAD > pr.diff
-          # your-approved-ai-cli --instructions docs/REVIEW_CRITERIA.md < pr.diff > review.md
-          # Post review.md as a PR comment with your CI's own mechanism.
+          # votre-cli-ia-approuvé --instructions docs/REVIEW_CRITERIA.md < pr.diff > review.md
+          # Publiez review.md en commentaire de PR avec le mécanisme propre à votre CI.

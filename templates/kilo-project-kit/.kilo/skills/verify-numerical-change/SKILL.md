@@ -1,16 +1,16 @@
 ---
 name: verify-numerical-change
-description: Checklist to verify a change to numerical or scientific Python code before calling it done (units, dB convention, in-place modification, NaN and empty inputs, tolerances, golden files, breaking the code on purpose). Use it after any change that can alter a computed number.
+description: Checklist pour vérifier un changement de code Python numérique ou scientifique avant de le déclarer terminé (unités, convention dB, modification en place, NaN et entrées vides, tolérances, fichiers golden, casser le code volontairement). À utiliser après tout changement pouvant modifier un nombre calculé.
 ---
 
-# Verify a numerical change
+# Vérifier un changement numérique
 
-1. **State the invariant.** What must not change (outputs, command line, golden files)? What may change, and why?
-2. **Inputs are not modified.** Search the diff for in-place operators (`-=`, `+=`, `/=`, `[:] =`) applied to arguments. Functions return new arrays.
-3. **Units and conventions.** Units in names and docstrings. dB: amplitude ratio `20*log10`, power ratio `10*log10`. If a convention is ambiguous, ask instead of choosing.
-4. **Edge cases.** Empty input, one sample, NaN, all zeros, constant signal: the behaviour is defined and tested.
-5. **Tolerances.** Every `approx` tolerance can be justified (noise level, discretization). No loose tolerance chosen to make a test pass.
-6. **A physical check exists.** An analytical value, a conservation law or a known limit is tested.
-7. **Tests can fail.** Change one operator or constant on purpose: at least one test must fail. Restore it.
-8. **Golden files** change only on purpose, in a separate commit whose message says why.
-9. **Report.** List what was checked, what was not, and every assumption.
+1. **Énoncez l'invariant.** Qu'est-ce qui ne doit pas changer (sorties, ligne de commande, fichiers golden) ? Qu'est-ce qui peut changer, et pourquoi ?
+2. **Les entrées ne sont pas modifiées.** Cherchez dans le diff des opérateurs en place (`-=`, `+=`, `/=`, `[:] =`) appliqués à des arguments. Les fonctions renvoient de nouveaux tableaux.
+3. **Unités et conventions.** Unités dans les noms et les docstrings. dB : rapport d'amplitudes `20*log10`, rapport de puissances `10*log10`. Si une convention est ambiguë, demandez au lieu de choisir.
+4. **Cas limites.** Entrée vide, un seul échantillon, NaN, que des zéros, signal constant : le comportement est défini et testé.
+5. **Tolérances.** Chaque tolérance `approx` peut être justifiée (niveau de bruit, discrétisation). Aucune tolérance large choisie pour faire passer un test.
+6. **Une vérification physique existe.** Une valeur analytique, une loi de conservation ou une limite connue est testée.
+7. **Les tests peuvent échouer.** Changez volontairement un opérateur ou une constante : au moins un test doit échouer. Rétablissez-le.
+8. **Les fichiers golden** ne changent que volontairement, dans un commit séparé dont le message dit pourquoi.
+9. **Rapport.** Listez ce qui a été vérifié, ce qui ne l'a pas été, et chaque hypothèse.

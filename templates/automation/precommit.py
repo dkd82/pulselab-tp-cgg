@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-"""Pre-commit hook (template: adapt SOURCE_DIRS and TEST_CMD below).
+"""Hook pre-commit (modèle : adaptez SOURCE_DIRS et TEST_CMD ci-dessous).
 
-  BLOCKING (deterministic):   secret scan, syntax check, fast tests.
-  ADVISORY (never blocks):    optional AI review of the staged diff.
+  BLOQUANT (déterministe) :   scan de secrets, vérification de syntaxe, tests rapides.
+  CONSULTATIF (ne bloque jamais) : revue IA facultative du diff indexé.
 
-Install the hook once:   python tools/precommit.py --install
+Installer le hook une fois :   python tools/precommit.py --install
 
-Optional AI advice: set AI_REVIEW_CMD to a command that reads the diff
-on stdin and prints comments on stdout (use your company-approved tool).
-Optional: AI_REVIEW_TIMEOUT (seconds, default 60).
+Conseil IA facultatif : définissez AI_REVIEW_CMD avec une commande qui lit le diff
+sur stdin et affiche des commentaires sur stdout (utilisez votre outil approuvé par l'entreprise).
+Facultatif : AI_REVIEW_TIMEOUT (secondes, 60 par défaut).
 """
 import os
 import re
@@ -19,8 +19,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_DIFF_CHARS = 20_000
-SOURCE_DIRS = ["pulselab", "scripts", "tests"]   # folders to syntax-check: ADAPT to your project
-TEST_CMD = [sys.executable, "-m", "pytest", "-x", "-q", "-p", "no:cacheprovider"]   # fast tests: ADAPT if needed
+SOURCE_DIRS = ["pulselab", "scripts", "tests"]   # dossiers dont la syntaxe est vérifiée : ADAPTEZ à votre projet
+TEST_CMD = [sys.executable, "-m", "pytest", "-x", "-q", "-p", "no:cacheprovider"]   # tests rapides : ADAPTEZ si besoin
 SECRET_PATTERNS = [
     re.compile(r"""(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['"][^'"\s]{8,}['"]"""),
     re.compile(r"-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -57,7 +57,7 @@ def run_step(name, cmd):
 
 
 def ai_advice(diff):
-    """Advisory only: any problem here is reported and ignored."""
+    """Consultatif uniquement : tout problème ici est signalé puis ignoré."""
     cmd = os.environ.get("AI_REVIEW_CMD")
     if not cmd or not diff.strip():
         return

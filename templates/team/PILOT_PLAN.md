@@ -1,16 +1,16 @@
-# Two-week pilot plan
+# Plan de pilote de deux semaines
 
-Decide from evidence, not from opinions. Fill this in before you standardize a tool or a practice.
+Décidez à partir de preuves, pas d'opinions. Remplissez ce document avant de standardiser un outil ou une pratique.
 
-| Question | Answer |
+| Question | Réponse |
 |---|---|
-| What are we testing? (tool, agent, practice) | |
-| Who takes part? (names) | |
-| On which real, low-risk tasks? | |
-| Success metric (time saved? defects found? review effort?) | |
-| How do we measure it? (who, when) | |
-| Data rules for the pilot (what is never sent) | |
-| Stop criteria (when do we stop or change course?) | |
-| Decision date and who decides | |
+| Que testons-nous ? (outil, agent, pratique) | |
+| Qui participe ? (noms) | |
+| Sur quelles tâches réelles à faible risque ? | |
+| Métrique de succès (temps gagné ? défauts trouvés ? effort de revue ?) | |
+| Comment la mesure-t-on ? (qui, quand) | |
+| Règles sur les données pour le pilote (ce qui n'est jamais envoyé) | |
+| Critères d'arrêt (quand arrête-t-on ou change-t-on de cap ?) | |
+| Date de décision et qui décide | |
 
-At the end: compare with the metric, list what surprised you, and update the team assets (instruction file, prompt templates, charter).
+À la fin : comparez avec la métrique, listez ce qui vous a surpris, et mettez à jour les ressources d'équipe (fichier d'instructions, modèles de prompts, charte).

@@ -1,11 +1,11 @@
 ---
-description: Plan a change across files, without editing code
+description: Planifier un changement sur plusieurs fichiers, sans modifier de code
 agent: plan
 ---
 
-Plan only: do not write or edit any code.
-I will describe the feature and its acceptance criteria in my message. If either is missing, ask me first.
+Plan uniquement : n'écrivez ni ne modifiez aucun code.
+Je décrirai la fonctionnalité et ses critères d'acceptation dans mon message. Si l'un des deux manque, demandez-moi d'abord.
 
-Give numbered steps in a safe order (helpers first, plumbing next, command line last). For each step: the files touched and how to check it (a command or a test).
-Constraints: smallest change that meets the criteria, no new dependency, existing outputs and tests/golden files must not change.
-End with the risks and the questions you need answered before implementing.
+Donnez des étapes numérotées dans un ordre sûr (utilitaires d'abord, câblage ensuite, ligne de commande en dernier). Pour chaque étape : les fichiers touchés et comment la vérifier (une commande ou un test).
+Contraintes : le plus petit changement qui satisfait les critères, aucune nouvelle dépendance, les sorties existantes et les fichiers tests/golden ne doivent pas changer.
+Terminez par les risques et les questions auxquelles vous avez besoin que je réponde avant d'implémenter.

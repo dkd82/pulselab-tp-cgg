@@ -1,9 +1,9 @@
-# AI journal
+# Journal IA
 
-One line per AI interaction worth remembering. It feeds your team assets: a prompt that worked becomes a template, a rule learned the hard way becomes a line in the instruction file.
-Verdict: OK (correct), KO (wrong), PART (partly).
+Une ligne par interaction avec l'IA qui mérite d'être retenue. Il alimente vos ressources d'équipe : un prompt qui a marché devient un modèle, une règle apprise à la dure devient une ligne du fichier d'instructions.
+Verdict : OK (correct), KO (faux), PART (partiel).
 
-| Date | Task / step | Mode + tool | Prompt (short) | What happened | How I verified | Verdict | Lesson |
+| Date | Tâche / étape | Mode + outil | Prompt (court) | Ce qui s'est passé | Comment j'ai vérifié | Verdict | Leçon |
 |---|---|---|---|---|---|---|---|
 | | | | | | | | |
 | | | | | | | | |

@@ -1,20 +1,20 @@
-# Prompt template: root-cause analysis (v1.0)
+# Modèle de prompt : analyse de cause racine (v1.0)
 
-Use with: a read-only agent (Kilo Code: *Ask*). **Do not ask for a fix yet.**
+À utiliser avec : un agent en lecture seule (Kilo Code : *Ask*). **Ne demandez pas encore de correctif.**
 
-## Goal
-Find the root cause of: {{symptom}}. Do not propose a fix yet.
+## Objectif
+Trouvez la cause racine de : {{symptom}}. Ne proposez pas encore de correctif.
 
-## Context
-- Expected: {{expected}}. Observed: {{observed}}.
-- Failing test or reproduction: {{repro}}. Output: {{paste_the_exact_output}}
-- Relevant files: {{files}}.
+## Contexte
+- Attendu : {{expected}}. Observé : {{observed}}.
+- Test en échec ou reproduction : {{repro}}. Sortie : {{paste_the_exact_output}}
+- Fichiers pertinents : {{files}}.
 
-## Constraints
-- No code change. Rank the hypotheses from most to least likely.
+## Contraintes
+- Aucune modification de code. Classez les hypothèses de la plus à la moins probable.
 
 ## Format
-A table: hypothesis | why it is plausible | one experiment (a few lines of Python) that would confirm or reject it.
+Un tableau : hypothèse | pourquoi elle est plausible | une expérience (quelques lignes de Python) qui la confirmerait ou l'infirmerait.
 
-## Verification
-Say what evidence would change your ranking.
+## Vérification
+Dites quelle preuve changerait votre classement.

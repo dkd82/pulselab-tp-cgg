@@ -1,28 +1,28 @@
-# Templates
+# Modèles
 
-Reusable files to adapt in your team. Copy them into your own repository, change them, review them like code.
+Des fichiers réutilisables à adapter dans votre équipe. Copiez-les dans votre propre dépôt, modifiez-les, relisez-les comme du code.
 
-| Folder | What is inside |
+| Dossier | Contenu |
 |---|---|
-| `prompts/` | Ten tool-agnostic prompt templates built on the six blocks (explore, plan, root cause, bug fix, new function, tests, characterization tests, refactoring contract, review, property-based tests) |
-| `kilo-project-kit/` | A copy-ready Kilo Code setup: `kilo.jsonc` (instructions + **permissions**), `AGENTS.md`, `.kilo/rules/`, `.kilo/agents/` (reviewer, test-writer, docs-writer), `.kilo/skills/` (3 skills), `.kilo/commands/` (4 slash commands) |
-| `multi-agent/` | When several agents are worth it and when not, how Kilo Code subagents work, a brief template, a delegation prompt |
-| `team/` | Charter, review checklist, AI journal, pilot plan, workflow card |
-| `automation/` | Pre-commit hook with an advisory AI step, review criteria for a bot, a CI draft |
+| `prompts/` | Dix modèles de prompts indépendants de l'outil, construits sur les six blocs (explorer, planifier, cause racine, correction de bug, nouvelle fonction, tests, tests de caractérisation, contrat de refactoring, revue, tests par propriétés) |
+| `kilo-project-kit/` | Une configuration Kilo Code prête à copier : `kilo.jsonc` (instructions + **permissions**), `AGENTS.md`, `.kilo/rules/`, `.kilo/agents/` (reviewer, test-writer, docs-writer), `.kilo/skills/` (3 skills), `.kilo/commands/` (4 commandes slash) |
+| `multi-agent/` | Quand plusieurs agents valent la peine et quand non, comment fonctionnent les sous-agents de Kilo Code, un modèle de brief, un prompt de délégation |
+| `team/` | Charte, checklist de revue, journal IA, plan de pilote, fiche de workflow |
+| `automation/` | Hook pre-commit avec une étape IA consultative, critères de revue pour un bot, un brouillon de CI |
 
-## What was checked, and what was not
+## Ce qui a été vérifié, et ce qui ne l'a pas été
 
-**Checked**
-- The file locations, key names and rules of the Kilo Code files were read in the **official documentation (kilo.ai/docs) in September 2026** (sources are listed in `../AI_Coding_Best_Practices.md`).
-- Syntax was validated by a script: `kilo.jsonc` parses (comments removed), every `SKILL.md` has a valid `name` (lowercase, digits, hyphens, at most 64 characters, equal to its folder name) and a `description` (at most 1024 characters), every agent and command has valid YAML frontmatter that only uses keys named in the documentation.
-- `automation/precommit.py` was replayed in a scratch git repository (six scenarios).
+**Vérifié**
+- Les emplacements de fichiers, les noms de clés et les règles des fichiers Kilo Code ont été lus dans la **documentation officielle (kilo.ai/docs) en septembre 2026** (les sources sont listées dans `../Bonnes_Pratiques_Codage_IA.md`).
+- La syntaxe a été validée par un script : `kilo.jsonc` se parse (commentaires retirés), chaque `SKILL.md` a un `name` valide (minuscules, chiffres, tirets, 64 caractères au plus, égal au nom de son dossier) et une `description` (1024 caractères au plus), chaque agent et chaque commande a un frontmatter YAML valide qui n'utilise que des clés citées dans la documentation.
+- `automation/precommit.py` a été rejoué dans un dépôt git temporaire (six scénarios).
 
-**Not checked**
-- The kit was **not run inside Kilo Code** by its author (it was not installed where the files were written). Use the smoke test in `kilo-project-kit/README.md`.
-- The documentation of Kilo Code changes quickly and is not always consistent with itself (defaults of permissions, order of rules in examples). Check your installed version.
-- `automation/ci-example.yml` was never executed.
+**Non vérifié**
+- Le kit n'a **pas été exécuté dans Kilo Code** par son auteur (Kilo n'était pas installé là où les fichiers ont été écrits). Utilisez le test de fumée de `kilo-project-kit/README.md`.
+- La documentation de Kilo Code évolue vite et n'est pas toujours cohérente avec elle-même (valeurs par défaut des permissions, ordre des règles dans les exemples). Vérifiez votre version installée.
+- `automation/ci-example.yml` n'a jamais été exécuté.
 
-## Conventions used in the templates
+## Conventions utilisées dans les modèles
 
-- `{{double_braces}}` in prompts: replace with your own value.
-- `<angle brackets>` in files (AGENTS.md, charter): a value to fill in.
+- `{{doubles_accolades}}` dans les prompts : à remplacer par votre propre valeur.
+- `<chevrons>` dans les fichiers (AGENTS.md, charte) : une valeur à renseigner.

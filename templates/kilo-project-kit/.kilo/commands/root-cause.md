@@ -1,10 +1,10 @@
 ---
-description: Rank hypotheses for a bug, with one experiment each, and no fix
+description: Classer les hypothèses d'un bug, avec une expérience chacune, et sans correctif
 agent: ask
 ---
 
-Root-cause analysis. Do NOT propose a fix and do not change any file.
-I will give the symptom, the expected and observed behaviour, and the relevant files or test output in my message.
+Analyse de cause racine. Ne proposez PAS de correctif et ne modifiez aucun fichier.
+Je donnerai le symptôme, le comportement attendu et observé, et les fichiers ou la sortie de test pertinents dans mon message.
 
-Answer with a table: hypothesis | why it is plausible | one experiment (a few lines of Python) that would confirm or reject it.
-Rank from most to least likely and say what evidence would change your ranking.
+Répondez avec un tableau : hypothèse | pourquoi elle est plausible | une expérience (quelques lignes de Python) qui la confirmerait ou l'infirmerait.
+Classez de la plus à la moins probable et dites quelle preuve changerait votre classement.

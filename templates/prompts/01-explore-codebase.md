@@ -1,23 +1,23 @@
-# Prompt template: explore a codebase (v1.0)
+# Modèle de prompt : explorer une base de code (v1.0)
 
-Use with: a read-only agent (Kilo Code: *Ask*).
+À utiliser avec : un agent en lecture seule (Kilo Code : *Ask*).
 
-## Goal
-Explain this project to me: {{what_it_does}}.
+## Objectif
+Expliquez-moi ce projet : {{what_it_does}}.
 
-## Context
-- Folders: {{folders}}. Entry points I already know: {{entry_points}}.
-- Read the project instruction file first if there is one.
+## Contexte
+- Dossiers : {{folders}}. Points d'entrée que je connais déjà : {{entry_points}}.
+- Lisez d'abord le fichier d'instructions du projet s'il y en a un.
 
-## Constraints
-- Read-only: do not modify any file and do not run the code.
-- Cite the file path and function name for every claim. Say what you are unsure about instead of guessing.
+## Contraintes
+- Lecture seule : ne modifiez aucun fichier et n'exécutez pas le code.
+- Citez le chemin de fichier et le nom de fonction pour chaque affirmation. Dites ce dont vous n'êtes pas sûr au lieu de deviner.
 
 ## Format
-1. The entry points.
-2. One line per module.
-3. The data flow from {{input}} to {{output}}, as numbered steps.
-4. Where global or module-level state lives.
+1. Les points d'entrée.
+2. Une ligne par module.
+3. Le flux de données de {{input}} à {{output}}, en étapes numérotées.
+4. Où vit l'état global ou de niveau module.
 
-## Verification
-End with the three statements you are least sure about, so that I can check them by opening the files.
+## Vérification
+Terminez par les trois affirmations dont vous êtes le moins sûr, pour que je puisse les vérifier en ouvrant les fichiers.

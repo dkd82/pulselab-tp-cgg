@@ -1,32 +1,32 @@
-# <project name>: guide for humans and AI assistants
+# <nom du projet> : guide pour les humains et les assistants IA
 
-<!-- Kilo Code loads AGENTS.md from the project root (the file name is uppercase). Keep it short: about 40 lines.
-     Only write what the assistant cannot guess from the code. Replace every <placeholder>. -->
+<!-- Kilo Code charge AGENTS.md depuis la racine du projet (le nom du fichier est en majuscules). Restez bref : environ 40 lignes.
+     N'écrivez que ce que l'assistant ne peut pas deviner à partir du code. Remplacez chaque <placeholder>. -->
 
-## What this project is
-<One or two sentences: what it computes, on which data.>
+## Ce qu'est ce projet
+<Une ou deux phrases : ce qu'il calcule, sur quelles données.>
 
-## Commands
-- Install: `<pip install -r requirements.txt>`
-- Tests: `<python -m pytest -q>`
-- Run: `<python scripts/run_analysis.py --data data --out summary.csv>`
+## Commandes
+- Installation : `<pip install -r requirements.txt>`
+- Tests : `<python -m pytest -q>`
+- Lancement : `<python scripts/run_analysis.py --data data --out summary.csv>`
 
-## Layout
-- `<package>/`: <one line per module>
-- `scripts/`: command-line entry points. `tests/`: pytest. `tests/golden/`: reference outputs.
+## Organisation
+- `<package>/` : <une ligne par module>
+- `scripts/` : points d'entrée en ligne de commande. `tests/` : pytest. `tests/golden/` : sorties de référence.
 
-## Scientific conventions
-- Units are in names and docstrings: `_V`, `_s`, `_hz`, `_db`.
-- <State your dB convention: amplitude ratio 20*log10, power ratio 10*log10.>
-- Never modify an input array in place: return a new array.
-- Prefer vectorized NumPy/SciPy; a Python loop over samples needs a comment that explains why.
-- Docstrings state the units and the behaviour for NaN and empty input.
+## Conventions scientifiques
+- Les unités sont dans les noms et les docstrings : `_V`, `_s`, `_hz`, `_db`.
+- <Indiquez votre convention dB : rapport d'amplitudes 20*log10, rapport de puissances 10*log10.>
+- Ne jamais modifier un tableau d'entrée en place : renvoyer un nouveau tableau.
+- Préférer NumPy/SciPy vectorisé ; une boucle Python sur des échantillons nécessite un commentaire qui explique pourquoi.
+- Les docstrings précisent les unités et le comportement pour NaN et une entrée vide.
 
-## Rules for changes
-- A change of numerical behaviour needs a test AND a sentence in the pull request description.
-- `tests/golden/*` changes only on purpose, with the reason in the commit message.
-- Do not weaken or delete an existing test to make it pass.
-- No new dependency without asking. No absolute paths. No secrets. No large data files.
+## Règles pour les changements
+- Un changement de comportement numérique nécessite un test ET une phrase dans la description de la pull request.
+- `tests/golden/*` ne change que volontairement, avec la raison dans le message de commit.
+- Ne pas affaiblir ou supprimer un test existant pour le faire passer.
+- Aucune nouvelle dépendance sans demander. Aucun chemin absolu. Aucun secret. Aucun gros fichier de données.
 
-## When unsure
-Ask instead of guessing a scientific convention (dB, windowing, detrending, units).
+## En cas de doute
+Posez une question plutôt que de deviner une convention scientifique (dB, fenêtrage, retrait de tendance, unités).

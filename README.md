@@ -1,55 +1,55 @@
-# AI for Developers – Master AI to Code Faster
-## Participant hands-on labs (common-thread project "pulselab")
+# IA pour les devs – Maîtrisez l'IA pour coder
+## TP des participants (projet fil rouge « pulselab »)
 
-Intra-company training for CGG Services SAS · Trainer: Daouda DIOP
+Formation intra-entreprise pour CGG Services SAS · Formateur : Daouda DIOP
 
-This repository contains everything you need for the labs, day by day, plus reusable templates for your team.
-No confidential data is used: the `pulselab` project works on simulated measurements.
-The labs are written to work with any AI coding assistant; the examples and templates target **Kilo Code**.
+Ce dépôt contient tout ce dont vous avez besoin pour les TP, jour par jour, ainsi que des modèles réutilisables pour votre équipe.
+Aucune donnée confidentielle n'est utilisée : le projet `pulselab` travaille sur des mesures simulées.
+Les TP sont écrits pour fonctionner avec n'importe quel assistant de code IA ; les exemples et les modèles ciblent **Kilo Code**.
 
 ## Structure
 
 ```
 Jour1/
-  AI_For_Developers_CGG_Services_SAS_Day1.pdf   <- Day 1 slide deck
-  TP_Day1_Participant.html                      <- Day 1 lab sheet (open in a browser)
-  pulselab_day1_starter.zip                     <- Day 1 Python starter project
-  Prompt_Solutions_Day1.md                      <- model prompts for the lab steps (compare after you tried)
+  IA_Pour_Les_Devs_CGG_Services_SAS_Jour1.pdf   <- support de présentation du Jour 1
+  TP_Jour1_Participant.html                     <- fiche de TP du Jour 1 (à ouvrir dans un navigateur)
+  pulselab_jour1_starter.zip                    <- projet Python de départ du Jour 1
+  Solutions_Prompts_Jour1.md                    <- prompts modèles pour les étapes des TP (à comparer après votre essai)
 
 Jour2/
-  AI_For_Developers_CGG_Services_SAS_Day2.pdf   <- Day 2 slide deck
-  Cheat Sheet – English.pdf                     <- Kilo CLI commands cheat sheet
-  TP_Day2_Participant.html                      <- Day 2 lab sheet
-  pulselab_day2_starter.zip                     <- Day 2 Python starter project (clean reference state)
-  Prompt_Solutions_Day2.md                      <- model prompts for the lab steps
+  IA_Pour_Les_Devs_CGG_Services_SAS_Jour2.pdf   <- support de présentation du Jour 2
+  Aide-mémoire – Français.pdf                   <- aide-mémoire des commandes Kilo CLI
+  TP_Jour2_Participant.html                     <- fiche de TP du Jour 2
+  pulselab_jour2_starter.zip                    <- projet Python de départ du Jour 2 (état de référence propre)
+  Solutions_Prompts_Jour2.md                    <- prompts modèles pour les étapes des TP
 
-AI_Coding_Best_Practices.md                     <- memo: good practices for coding with AI
+Bonnes_Pratiques_Codage_IA.md                   <- mémo : bonnes pratiques pour coder avec l'IA
 
-templates/                                      <- reusable files to adapt in your team
-  prompts/            ten prompt templates (explore, plan, root cause, bug fix, new function, tests, ...)
-  kilo-project-kit/   kilo.jsonc (instructions + permissions), AGENTS.md, rules, agents, skills, slash commands
-  multi-agent/        when several agents are worth it, subagents in Kilo Code, brief template, delegation prompt
-  team/               charter, review checklist, AI journal, pilot plan, workflow card
-  automation/         pre-commit hook with an advisory AI step, review criteria, CI draft
+templates/                                      <- fichiers réutilisables à adapter dans votre équipe
+  prompts/            dix modèles de prompts (explorer, planifier, cause racine, correction de bug, nouvelle fonction, tests, ...)
+  kilo-project-kit/   kilo.jsonc (instructions + permissions), AGENTS.md, règles, agents, skills, commandes slash
+  multi-agent/        quand plusieurs agents valent la peine, sous-agents dans Kilo Code, modèle de brief, prompt de délégation
+  team/               charte, checklist de revue, journal IA, plan de pilote, fiche de workflow
+  automation/         hook pre-commit avec une étape IA consultative, critères de revue, brouillon de CI
 ```
 
-## Getting started
+## Pour commencer
 
-1. Get this repository (`git clone <url>`, or `git pull` if you already have it).
-2. Open `Jour1/TP_Day1_Participant.html` in your browser (double-click: the page is self-contained, no network needed).
-3. Follow lab 1.0: it walks you through unzipping `pulselab_day1_starter.zip` and setting up your Python environment.
-4. On Day 2, do the same with the `Jour2/` folder (`git pull` first if you cloned earlier).
+1. Récupérez ce dépôt (`git clone <url>`, ou `git pull` si vous l'avez déjà).
+2. Ouvrez `Jour1/TP_Jour1_Participant.html` dans votre navigateur (double-clic : la page est autonome, aucun réseau n'est nécessaire).
+3. Suivez le TP 1.0 : il vous guide pour décompresser `pulselab_jour1_starter.zip` et configurer votre environnement Python.
+4. Le Jour 2, faites de même avec le dossier `Jour2/` (faites d'abord un `git pull` si vous avez cloné plus tôt).
 
-In the lab sheets you can **write your prompts directly in the page** (the yellow boxes, and an optional notepad on the AI steps).
-Your prompts, ticked steps and notes are saved **locally in your browser** (not in this repository): keep using the same browser and the same file location.
-Copy the finished prompt into your assistant with the *Copy my prompt* button.
+Dans les fiches de TP, vous pouvez **écrire vos prompts directement dans la page** (les encadrés jaunes, et un bloc-notes facultatif sur les étapes IA).
+Vos prompts, vos étapes cochées et vos notes sont enregistrés **localement dans votre navigateur** (pas dans ce dépôt) : continuez à utiliser le même navigateur et le même emplacement de fichier.
+Copiez le prompt terminé dans votre assistant avec le bouton *Copier mon prompt*.
 
-## Rules recalled throughout the labs
+## Règles rappelées tout au long des TP
 
-- No confidential data, no secrets in prompts (the dataset is synthetic).
-- Commit before any AI action that can edit files, and read every diff.
+- Pas de données confidentielles, pas de secrets dans les prompts (le jeu de données est synthétique).
+- Commitez avant toute action de l'IA susceptible de modifier des fichiers, et lisez chaque diff.
 
-## Note on the templates
+## À propos des modèles
 
-The Kilo Code files in `templates/` follow the official documentation as read in September 2026, and their syntax was validated by a script.
-They were **not run inside Kilo Code** by their author: use the smoke test in `templates/kilo-project-kit/README.md` and check your installed version.
+Les fichiers Kilo Code de `templates/` suivent la documentation officielle telle que lue en septembre 2026, et leur syntaxe a été validée par un script.
+Ils n'ont **pas été exécutés dans Kilo Code** par leur auteur : utilisez le test de fumée de `templates/kilo-project-kit/README.md` et vérifiez votre version installée.

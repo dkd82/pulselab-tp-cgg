@@ -1,45 +1,45 @@
-# Kilo Code project kit
+# Kit de projet Kilo Code
 
-A ready-to-copy set of team files for a scientific Python project: instructions, rules, permissions, agents, skills and slash commands.
+Un ensemble de fichiers d'équipe prêts à copier pour un projet Python scientifique : instructions, règles, permissions, agents, skills et commandes slash.
 
 ```
 kilo-project-kit/
-  kilo.jsonc                 config: instructions list + permissions (edit it first)
-  AGENTS.md                  project guide (fill in the <placeholders>)
+  kilo.jsonc                 config : liste d'instructions + permissions (à modifier en premier)
+  AGENTS.md                  guide du projet (remplissez les <placeholders>)
   .kilo/
     rules/                   scientific-conventions.md, testing.md, security-and-data.md
-    agents/                  reviewer (subagent, read-only), test-writer (subagent, tests only), docs-writer (primary, *.md only)
+    agents/                  reviewer (sous-agent, lecture seule), test-writer (sous-agent, tests uniquement), docs-writer (principal, *.md uniquement)
     skills/                  verify-numerical-change, characterization-tests, scientific-code-review
     commands/                /plan-feature, /root-cause, /review-diff, /test-plan
 ```
 
-## Install
+## Installation
 
-1. Copy the **contents** of this folder into the root of your project, including the hidden `.kilo` folder.
-   If your project already has a `kilo.jsonc`, merge the `instructions` and `permission` keys by hand instead of overwriting it.
-2. Open `AGENTS.md` and replace every `<placeholder>` with your project's facts. Keep it short.
-3. Read `kilo.jsonc` line by line and adapt the permissions (commands you allow without a prompt, files you protect).
-4. Reload: in the CLI use `/reload` or start a new session; in VS Code reload the window. (The documentation says project permissions are cached until you do.)
-5. Commit the kit: these files are shared team assets and are reviewed like code.
+1. Copiez le **contenu** de ce dossier à la racine de votre projet, y compris le dossier caché `.kilo`.
+   Si votre projet a déjà un `kilo.jsonc`, fusionnez à la main les clés `instructions` et `permission` au lieu de l'écraser.
+2. Ouvrez `AGENTS.md` et remplacez chaque `<placeholder>` par les faits de votre projet. Restez bref.
+3. Lisez `kilo.jsonc` ligne par ligne et adaptez les permissions (commandes autorisées sans confirmation, fichiers protégés).
+4. Rechargez : dans la CLI, utilisez `/reload` ou démarrez une nouvelle session ; dans VS Code, rechargez la fenêtre. (La documentation indique que les permissions du projet sont mises en cache tant que vous ne le faites pas.)
+5. Commitez le kit : ces fichiers sont des ressources d'équipe partagées et sont relus comme du code.
 
-## Smoke test (5 minutes): do not skip it
+## Test de fumée (5 minutes) : ne le sautez pas
 
-These files were checked against the Kilo Code documentation and their syntax was validated, but they were **not run inside Kilo Code** by the author. Prove they work in *your* version:
+Ces fichiers ont été comparés à la documentation de Kilo Code et leur syntaxe a été validée, mais ils n'ont **pas été exécutés dans Kilo Code** par leur auteur. Prouvez qu'ils fonctionnent dans *votre* version :
 
-| Test | What you should see |
+| Test | Ce que vous devez voir |
 |---|---|
-| Ask the agent: "Which instructions and rules are you following in this project?" | It mentions the content of `AGENTS.md` and of `.kilo/rules/`. |
-| Ask the agent to edit a file under `tests/golden/`. | The edit is denied, or at least you are asked first. If it is **not**, the rule order is not what you think: see the note below. |
-| Ask it to run `git status`, then `rm somefile`. | `git status` runs; `rm` is refused. |
-| Type `/plan-feature` (CLI or chat). | The command exists and switches to the plan agent. |
-| Type `@reviewer` followed by a request to review the last change. | The subagent runs and returns a short review. |
-| Ask something that matches a skill (for example "verify this numerical change"). | The agent loads the skill (use `/reload` after adding skills). |
+| Demandez à l'agent : « Quelles instructions et quelles règles suis-tu dans ce projet ? » | Il mentionne le contenu de `AGENTS.md` et de `.kilo/rules/`. |
+| Demandez à l'agent de modifier un fichier sous `tests/golden/`. | La modification est refusée, ou au moins on vous demande d'abord. Si ce n'est **pas** le cas, l'ordre des règles n'est pas celui que vous croyez : voir la note ci-dessous. |
+| Demandez-lui de lancer `git status`, puis `rm somefile`. | `git status` s'exécute ; `rm` est refusé. |
+| Tapez `/plan-feature` (CLI ou chat). | La commande existe et bascule sur l'agent de planification. |
+| Tapez `@reviewer` suivi d'une demande de relecture du dernier changement. | Le sous-agent s'exécute et renvoie une courte revue. |
+| Demandez quelque chose qui correspond à un skill (par exemple « vérifie ce changement numérique »). | L'agent charge le skill (utilisez `/reload` après avoir ajouté des skills). |
 
-## Notes and known limits
+## Notes et limites connues
 
-- **Rule order.** The documentation of agent permissions says the *last matching rule wins*, so broad rules come first and exceptions after. Some example snippets in the documentation use the opposite order. These files follow the rule as written; if the smoke test shows the opposite behaviour, reverse the order of the entries.
-- **Defaults.** Two pages of the documentation disagree on what happens for a tool with no rule (ask or allow). That is why `kilo.jsonc` writes every rule you care about explicitly.
-- **Slash commands.** The documentation does not say how text typed after `/command` is passed to the command. The commands here therefore tell the agent that you will describe the task **in your message**. Check the behaviour in your version.
-- **Agents and modes.** Custom modes are called *agents* in the current documentation. Older versions used `.kilocodemodes` and a `.kilocode/` folder; the documentation says these are read or migrated automatically.
-- **Global vs project.** Everything here is project-level. Global equivalents live under `~/.config/kilo/` (see the documentation); avoid duplicating a rule in both places.
-- **Windows.** The permission matcher normalizes backslashes; on Windows matching is case-insensitive (documentation).
+- **Ordre des règles.** La documentation des permissions des agents dit que la *dernière règle qui correspond l'emporte* : les règles générales viennent donc d'abord et les exceptions après. Certains extraits d'exemple de la documentation utilisent l'ordre inverse. Ces fichiers suivent la règle telle qu'écrite ; si le test de fumée montre le comportement inverse, inversez l'ordre des entrées.
+- **Valeurs par défaut.** Deux pages de la documentation se contredisent sur ce qui se passe pour un outil sans règle (ask ou allow). C'est pourquoi `kilo.jsonc` écrit explicitement chaque règle qui vous importe.
+- **Commandes slash.** La documentation ne dit pas comment le texte tapé après `/commande` est transmis à la commande. Les commandes ci-jointes indiquent donc à l'agent que vous décrirez la tâche **dans votre message**. Vérifiez le comportement dans votre version.
+- **Agents et modes.** Les modes personnalisés s'appellent des *agents* dans la documentation actuelle. Les anciennes versions utilisaient `.kilocodemodes` et un dossier `.kilocode/` ; la documentation indique qu'ils sont lus ou migrés automatiquement.
+- **Global vs projet.** Tout ce qui est ici est au niveau du projet. Les équivalents globaux se trouvent sous `~/.config/kilo/` (voir la documentation) ; évitez de dupliquer une règle aux deux endroits.
+- **Windows.** Le moteur de correspondance des permissions normalise les antislashs ; sous Windows, la correspondance ne tient pas compte de la casse (documentation).

@@ -1,15 +1,15 @@
 {
-  // Team template for Kilo Code. Copy it to your project root as kilo.jsonc (or to .kilo/kilo.jsonc).
-  // Layout and keys were checked against the Kilo Code documentation (kilo.ai/docs, September 2026).
-  // Project permissions are cached: reload the VS Code window (or start a new CLI session) after editing this file.
+  // Modèle d'équipe pour Kilo Code. Copiez-le à la racine de votre projet sous le nom kilo.jsonc (ou dans .kilo/kilo.jsonc).
+  // Organisation et clés vérifiées dans la documentation de Kilo Code (kilo.ai/docs, septembre 2026).
+  // Les permissions du projet sont mises en cache : rechargez la fenêtre VS Code (ou démarrez une nouvelle session CLI) après avoir modifié ce fichier.
   "$schema": "https://app.kilo.ai/config.json",
 
-  // Extra instruction files (paths or globs), loaded on top of AGENTS.md
+  // Fichiers d'instructions supplémentaires (chemins ou globs), chargés en plus d'AGENTS.md
   "instructions": [".kilo/rules/*.md"],
 
   "permission": {
-    // Rules are evaluated in order and the LAST matching rule wins:
-    // put the broad rule first and the exceptions after it. Then TEST that your rules behave as you expect (see README).
+    // Les règles sont évaluées dans l'ordre et la DERNIÈRE règle qui correspond l'emporte :
+    // mettez la règle générale d'abord et les exceptions après. Puis TESTEZ que vos règles se comportent comme prévu (voir le README).
     "read": {
       "*": "allow",
       "*.env": "ask",
@@ -18,17 +18,17 @@
     },
     "edit": {
       "*": "ask",
-      // files that define what "correct" means: the agent must not change them
+      // fichiers qui définissent ce que « correct » veut dire : l'agent ne doit pas les modifier
       "tests/golden/*": "deny"
     },
     "bash": {
       "*": "ask",
-      // read-only and test commands you are happy to run without a prompt (adapt to your project)
+      // commandes en lecture seule et de test que vous acceptez de lancer sans confirmation (à adapter à votre projet)
       "git status *": "allow",
       "git diff *": "allow",
       "git log *": "allow",
       "python -m pytest *": "allow",
-      // never without you
+      // jamais sans vous
       "rm *": "deny",
       "git reset --hard *": "deny",
       "git clean *": "deny"
@@ -36,7 +36,7 @@
     "webfetch": "ask",
     "websearch": "ask",
     "external_directory": "ask",
-    // which subagents an agent may call (see .kilo/agents/)
+    // quels sous-agents un agent peut appeler (voir .kilo/agents/)
     "task": {
       "*": "ask",
       "reviewer": "allow",

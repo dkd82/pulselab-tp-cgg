@@ -1,22 +1,22 @@
-# Prompt template: write tests (v1.0)
+# Modèle de prompt : écrire des tests (v1.0)
 
-Use with: a planning agent for the plan (Kilo Code: *Plan*), then a coding agent for the tests (*Code*).
+À utiliser avec : un agent de planification pour le plan (Kilo Code : *Plan*), puis un agent de code pour les tests (*Code*).
 
-## Goal
-Write pytest tests for `{{function_or_module}}`.
+## Objectif
+Écrivez des tests pytest pour `{{function_or_module}}`.
 
-## Context
-- Existing tests: {{test_file}}. Behaviour to lock (do NOT change the source): {{behaviour}}.
-- Known facts: {{known_facts}} (for example: a run without pulses must give NaN).
+## Contexte
+- Tests existants : {{test_file}}. Comportement à figer (ne PAS modifier le source) : {{behaviour}}.
+- Faits connus : {{known_facts}} (par exemple : un run sans impulsions doit donner NaN).
 
-## Constraints
-- Step 1, plan only: propose a test plan and wait for my approval. Step 2: write the tests.
-- Each test asserts a real value (no `is not None`, no `> 0` alone). Never recompute the expected value with the code under test.
-- Use `pytest.approx` with a tolerance you can justify. Seeded random data only. Tests only: do not modify the source.
+## Contraintes
+- Étape 1, plan uniquement : proposez un plan de tests et attendez mon approbation. Étape 2 : écrivez les tests.
+- Chaque test vérifie une vraie valeur (pas de `is not None`, pas de `> 0` seul). Ne recalculez jamais la valeur attendue avec le code testé.
+- Utilisez `pytest.approx` avec une tolérance que vous pouvez justifier. Données aléatoires avec graine fixée uniquement. Tests uniquement : ne modifiez pas le source.
 
 ## Format
-Step 1: a table: behaviour | test name | the single-line change in the source this test should catch. Step 2: the test file.
+Étape 1 : un tableau : comportement | nom du test | le changement d'une seule ligne dans le source que ce test doit détecter. Étape 2 : le fichier de tests.
 
-## Verification
-- Run the tests and show the result.
-- I will then break the code on purpose (or run a mutation script) to check that the tests can fail.
+## Vérification
+- Lancez les tests et montrez le résultat.
+- Je casserai ensuite le code volontairement (ou lancerai un script de mutation) pour vérifier que les tests peuvent échouer.

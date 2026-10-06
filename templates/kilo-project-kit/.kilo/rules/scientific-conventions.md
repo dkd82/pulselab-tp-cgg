@@ -1,9 +1,9 @@
-# Scientific conventions
+# Conventions scientifiques
 
-- Name quantities with their unit: `offset_V`, `duration_s`, `fs_hz`, `snr_db`.
-- A dB value of an amplitude ratio is `20*log10(ratio)`; of a power ratio it is `10*log10(ratio)`. If the convention of a quantity is not stated, ask.
-- Functions never modify their arguments in place. Use `x - x.mean()`, not `x -= x.mean()`, unless the function is explicitly documented as in-place.
-- Random data uses a seeded generator: `numpy.random.default_rng(seed)`.
-- Behaviour for empty input and for NaN is defined in the docstring and covered by a test.
-- Do not replace a loop by a library call (for example `scipy.signal.find_peaks`) without a test proving the results are identical.
-- Check that a NumPy or SciPy function exists in the installed version before using it (some old names no longer exist).
+- Nommez les grandeurs avec leur unité : `offset_V`, `duration_s`, `fs_hz`, `snr_db`.
+- Une valeur en dB d'un rapport d'amplitudes vaut `20*log10(rapport)` ; pour un rapport de puissances, c'est `10*log10(rapport)`. Si la convention d'une grandeur n'est pas indiquée, demandez.
+- Les fonctions ne modifient jamais leurs arguments en place. Utilisez `x - x.mean()`, pas `x -= x.mean()`, sauf si la fonction est explicitement documentée comme travaillant en place.
+- Les données aléatoires utilisent un générateur avec graine : `numpy.random.default_rng(seed)`.
+- Le comportement pour une entrée vide et pour NaN est défini dans la docstring et couvert par un test.
+- Ne remplacez pas une boucle par un appel de bibliothèque (par exemple `scipy.signal.find_peaks`) sans un test prouvant que les résultats sont identiques.
+- Vérifiez qu'une fonction NumPy ou SciPy existe dans la version installée avant de l'utiliser (certains anciens noms n'existent plus).

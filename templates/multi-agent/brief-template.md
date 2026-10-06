@@ -1,32 +1,32 @@
-# Brief template for a subagent or a separate session
+# Modèle de brief pour un sous-agent ou une session séparée
 
-A subagent or a fresh session knows **only what you write here**. Make it self-contained.
+Un sous-agent ou une session neuve ne connaît **que ce que vous écrivez ici**. Rendez le brief autonome.
 
 ```
-BRIEF <name>
-Goal:            {{one_sentence}}
-Context:         {{what it needs to know: project, conventions, units, the files it should read}}
-Allowed files:   {{the ONLY files it may create or edit}}
-Out of scope:    {{everything else, explicitly (report.py, the CLI, tests/golden/...)}}
-Deliverable:     {{signature / file / behaviour}}
-Check:           {{command it must run}}. Report back in at most 10 lines: what was done, files touched, test result.
+BRIEF <nom>
+Objectif :           {{one_sentence}}
+Contexte :           {{ce qu'il doit savoir : projet, conventions, unités, fichiers à lire}}
+Fichiers autorisés : {{les SEULS fichiers qu'il peut créer ou modifier}}
+Hors périmètre :     {{tout le reste, explicitement (report.py, la CLI, tests/golden/...)}}
+Livrable :           {{signature / fichier / comportement}}
+Vérification :       {{commande à lancer}}. Rendez compte en 10 lignes maximum : ce qui a été fait, fichiers touchés, résultat des tests.
 ```
 
-## Rules for the set of briefs
+## Règles pour l'ensemble des briefs
 
-- The "allowed files" of two briefs never overlap.
-- Anything that touches several pieces (wiring, CLI options, golden files) is **your** integration step, not a subagent's.
-- Each brief says how the result will be checked.
-- After integration: run all the tests, read the diffs file by file, and ask a fresh-context reviewer for a second opinion.
+- Les « fichiers autorisés » de deux briefs ne se recouvrent jamais.
+- Tout ce qui touche plusieurs morceaux (câblage, options de la CLI, fichiers golden) est **votre** étape d'intégration, pas celle d'un sous-agent.
+- Chaque brief indique comment le résultat sera vérifié.
+- Après l'intégration : lancez tous les tests, lisez les diffs fichier par fichier, et demandez un second avis à un relecteur dans un contexte neuf.
 
-## Example (from lab 2.3)
+## Exemple (issu du TP 2.3)
 
 ```
 BRIEF B
-Goal:            add fit_decay_with_error(t_peaks, heights) -> (tau, tau_err) to pulselab/fit.py.
-Context:         fit_decay currently returns only tau (scipy.optimize.curve_fit of a*exp(-t/tau)). tau_err is the 1-sigma uncertainty sqrt(pcov[1,1]). Return (nan, nan) when the fit is impossible. fit_decay keeps its behaviour. Times are in seconds.
-Allowed files:   pulselab/fit.py and tests/test_fit_uncertainty.py (new).
-Out of scope:    everything else, especially report.py and the golden files.
-Deliverable:     the function and its tests: true tau within 3 sigma on noisy data; larger noise gives a larger tau_err; empty input gives (nan, nan); fit_decay equals the first value.
-Check:           python -m pytest -q. Report back in at most 10 lines.
+Objectif :           ajouter fit_decay_with_error(t_peaks, heights) -> (tau, tau_err) à pulselab/fit.py.
+Contexte :           fit_decay ne renvoie actuellement que tau (scipy.optimize.curve_fit de a*exp(-t/tau)). tau_err est l'incertitude à 1 sigma sqrt(pcov[1,1]). Renvoyer (nan, nan) quand l'ajustement est impossible. fit_decay conserve son comportement. Les temps sont en secondes.
+Fichiers autorisés : pulselab/fit.py et tests/test_fit_uncertainty.py (nouveau).
+Hors périmètre :     tout le reste, en particulier report.py et les fichiers golden.
+Livrable :           la fonction et ses tests : le vrai tau est à moins de 3 sigma sur des données bruitées ; un bruit plus fort donne un tau_err plus grand ; une entrée vide donne (nan, nan) ; fit_decay est égal à la première valeur.
+Vérification :       python -m pytest -q. Rendez compte en 10 lignes maximum.
 ```

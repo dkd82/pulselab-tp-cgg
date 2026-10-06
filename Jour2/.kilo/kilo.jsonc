@@ -1,14 +1,14 @@
 {
-  // Trainer-only: drop this .kilo/ folder (and briefs/, MULTI_AGENT_KILO.md) at the root
-  // of lab2.3_multi_agent/ to reproduce the Kilo Code demo of TP 2.3 live.
-  // Layout and keys checked against kilo.ai/docs, September 2026 (same schema as
+  // Réservé au formateur : déposez ce dossier .kilo/ (ainsi que briefs/ et MULTI_AGENT_KILO.md) à la racine
+  // de lab2.3_multi_agent/ pour reproduire en direct la démo Kilo Code du TP 2.3.
+  // Organisation et clés vérifiées dans kilo.ai/docs, septembre 2026 (même schéma que
   // pulselab-tp-participants/templates/kilo-project-kit/kilo.jsonc).
   "$schema": "https://app.kilo.ai/config.json",
 
   "permission": {
     "edit": {
       "*": "ask",
-      // ground truth: must not change during the lab
+      // vérité de référence : ne doit pas changer pendant le TP
       "tests/golden/*": "deny"
     },
     "bash": {
@@ -21,7 +21,7 @@
       "git reset --hard *": "deny",
       "git clean *": "deny"
     },
-    // which subagents the primary (Code) agent may call: the three sub-agents of TP 2.3
+    // quels sous-agents l'agent principal (Code) peut appeler : les trois sous-agents du TP 2.3
     "task": {
       "*": "ask",
       "explorer-a": "allow",

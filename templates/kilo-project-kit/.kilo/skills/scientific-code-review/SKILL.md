@@ -1,16 +1,16 @@
 ---
 name: scientific-code-review
-description: Criteria for reviewing a diff of scientific Python code (numerical correctness, in-place modification, units, dB convention, missing or weak tests, paths, dependencies, scope). Use it when asked to review changes, a pull request or generated code.
+description: Critères pour relire un diff de code Python scientifique (exactitude numérique, modification en place, unités, convention dB, tests manquants ou faibles, chemins, dépendances, périmètre). À utiliser quand on demande de relire des changements, une pull request ou du code généré.
 ---
 
-# Scientific code review
+# Revue de code scientifique
 
-Review in this order and report at most 7 comments, most severe first (file:line, severity, problem, one-sentence fix).
+Relisez dans cet ordre et rapportez 7 commentaires au maximum, du plus grave au moins grave (fichier:ligne, gravité, problème, correctif en une phrase).
 
-1. **Numerical correctness**: units, dB convention, off-by-one, dtype, NaN and empty-input handling, division by zero.
-2. **Aliasing**: an argument modified in place (`-=`, `/=`, slice assignment) that the caller does not expect.
-3. **Tests**: behaviour changes with no test; tests that could not fail; expected values recomputed with the code under test; loose tolerances.
-4. **Hygiene**: hard-coded constants, absolute paths, secrets, new or unused dependencies, large files.
-5. **Scope**: files changed that the task did not require; golden files changed without a stated reason.
+1. **Exactitude numérique** : unités, convention dB, erreurs de décalage d'index, dtype, gestion des NaN et des entrées vides, division par zéro.
+2. **Aliasing** : un argument modifié en place (`-=`, `/=`, affectation par tranche) auquel l'appelant ne s'attend pas.
+3. **Tests** : changements de comportement sans test ; tests qui ne pourraient pas échouer ; valeurs attendues recalculées avec le code testé ; tolérances trop larges.
+4. **Hygiène** : constantes codées en dur, chemins absolus, secrets, dépendances nouvelles ou inutilisées, gros fichiers.
+5. **Périmètre** : fichiers modifiés que la tâche ne nécessitait pas ; fichiers golden modifiés sans raison indiquée.
 
-Do not comment on formatting. Say "no issue found" when there is none, and say which parts you could not judge.
+Ne commentez pas le formatage. Dites « aucun problème trouvé » s'il n'y en a pas, et dites quelles parties vous n'avez pas pu juger.

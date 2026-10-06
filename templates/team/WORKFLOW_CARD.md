@@ -1,9 +1,9 @@
-# AI workflow card (one page per team)
+# Fiche de workflow IA (une page par équipe)
 
-1. **Task types and default mode/tool:** explore | small edit | multi-file change | tests | review → which agent or mode?
-2. **Shared assets in the repository:** instruction file, prompt templates, agents, skills, commands, charter, review checklist.
-3. **Verification gates before merge:** tests, golden files, mutation score, human review.
-4. **Automation:** pre-commit hook, CI job, advisory AI review.
-5. **Rules and data limits:** what is never sent to a tool; who is accountable.
-6. **Known limits we saw:** three concrete failures of AI in our own work.
-7. **Next week, three actions:** owner and date for each.
+1. **Types de tâches et mode/outil par défaut :** explorer | petite modification | changement multi-fichiers | tests | revue → quel agent ou quel mode ?
+2. **Ressources partagées dans le dépôt :** fichier d'instructions, modèles de prompts, agents, skills, commandes, charte, checklist de revue.
+3. **Garde-fous de vérification avant merge :** tests, fichiers golden, score de mutation, revue humaine.
+4. **Automatisation :** hook pre-commit, job CI, revue IA consultative.
+5. **Règles et limites sur les données :** ce qui n'est jamais envoyé à un outil ; qui est responsable.
+6. **Limites connues observées :** trois échecs concrets de l'IA dans notre propre travail.
+7. **Semaine prochaine, trois actions :** un responsable et une date pour chacune.

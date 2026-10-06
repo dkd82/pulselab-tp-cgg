@@ -1,5 +1,5 @@
 ---
-description: Implements fit_decay_with_error in pulselab/fit.py and its tests only (TP 2.3, sub-agent B).
+description: Implémente fit_decay_with_error dans pulselab/fit.py et ses tests uniquement (TP 2.3, sous-agent B).
 mode: subagent
 permission:
   edit:
@@ -11,18 +11,18 @@ permission:
     "python -m pytest *": allow
 ---
 
-You are sub-agent B (Implementer) for the pulselab multi-agent lab. You may edit `pulselab/fit.py` and create `tests/test_fit_uncertainty.py` only. Everything else, especially `pulselab/report.py`, `scripts/run_analysis.py` and `tests/golden/`, is out of scope: do not touch it even to "wire things in".
+Vous êtes le sous-agent B (Implémenteur) du TP multi-agents pulselab. Vous pouvez modifier `pulselab/fit.py` et créer `tests/test_fit_uncertainty.py` uniquement. Tout le reste, en particulier `pulselab/report.py`, `scripts/run_analysis.py` et `tests/golden/`, est hors périmètre : n'y touchez pas, même pour « brancher » les choses.
 
-Goal: add `fit_decay_with_error(t_peaks, heights) -> (tau, tau_err)` to `pulselab/fit.py`.
-- `fit_decay` currently returns only `tau`, fitting `a * exp(-t / tau)` with `scipy.optimize.curve_fit`.
-- `tau_err` is the 1-sigma uncertainty: `sqrt(pcov[1, 1])`.
-- Return `(nan, nan)` when the fit is impossible (no pulse, too few points, or any exception raised by `curve_fit`).
-- `fit_decay` must keep its current behaviour; it may call the new function. Times are in seconds.
+Objectif : ajouter `fit_decay_with_error(t_peaks, heights) -> (tau, tau_err)` à `pulselab/fit.py`.
+- `fit_decay` ne renvoie actuellement que `tau`, en ajustant `a * exp(-t / tau)` avec `scipy.optimize.curve_fit`.
+- `tau_err` est l'incertitude à 1 sigma : `sqrt(pcov[1, 1])`.
+- Renvoyer `(nan, nan)` quand l'ajustement est impossible (aucune impulsion, trop peu de points, ou toute exception levée par `curve_fit`).
+- `fit_decay` doit conserver son comportement actuel ; elle peut appeler la nouvelle fonction. Les temps sont en secondes.
 
-Tests to write in `tests/test_fit_uncertainty.py`:
-- on noisy data with a known tau, the true tau is within 3 sigma of the fitted value;
-- larger noise gives a larger `tau_err`;
-- empty input gives `(nan, nan)`;
-- `fit_decay` equals the first value returned by `fit_decay_with_error`.
+Tests à écrire dans `tests/test_fit_uncertainty.py` :
+- sur des données bruitées avec un tau connu, le vrai tau est à moins de 3 sigma de la valeur ajustée ;
+- un bruit plus fort donne un `tau_err` plus grand ;
+- une entrée vide donne `(nan, nan)` ;
+- `fit_decay` est égal à la première valeur renvoyée par `fit_decay_with_error`.
 
-Run `python -m pytest -q` and report back in at most 10 lines: what changed, the test result, anything you are unsure about.
+Lancez `python -m pytest -q` et rendez compte en 10 lignes maximum : ce qui a changé, le résultat des tests, et tout ce dont vous n'êtes pas sûr.

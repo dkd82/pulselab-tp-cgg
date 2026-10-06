@@ -1,73 +1,73 @@
-# TP 2.3 with Kilo Code — trainer notes
+# TP 2.3 avec Kilo Code — notes formateur
 
-This folder turns the TP 2.3 multi-agent mini-lab (three briefs, three sub-agents, one
-integration) into a concrete Kilo Code setup, so you can run or demo it instead of only
-describing it. It is the filled-in counterpart of
-`pulselab-tp-participants/templates/multi-agent/` (generic templates for the participants'
-own projects) — here every file names the real pulselab functions, branches and tests.
+Ce dossier transforme le mini-atelier multi-agents du TP 2.3 (trois briefs, trois sous-agents, une
+intégration) en une configuration Kilo Code concrète, pour que vous puissiez l'exécuter ou le démontrer
+au lieu de seulement le décrire. C'est la version remplie des
+`pulselab-tp-participants/templates/multi-agent/` (modèles génériques pour les propres projets des
+participants) — ici, chaque fichier nomme les vraies fonctions, branches et tests de pulselab.
 
-## What is here
+## Ce qu'il y a ici
 
 ```
 .kilo/
-  kilo.jsonc          project config: default permissions + which sub-agents may be called (permission.task)
+  kilo.jsonc          configuration du projet : permissions par défaut + quels sous-agents peuvent être appelés (permission.task)
   agents/
-    explorer-a.md      sub-agent A: read-only, may only write docs/ARCHITECTURE.md
-    fit-b.md            sub-agent B: may only edit pulselab/fit.py + tests/test_fit_uncertainty.py
-    export-c.md          sub-agent C: may only create pulselab/export.py + tests/test_export.py
+    explorer-a.md      sous-agent A : lecture seule, ne peut écrire que docs/ARCHITECTURE.md
+    fit-b.md            sous-agent B : ne peut modifier que pulselab/fit.py + tests/test_fit_uncertainty.py
+    export-c.md          sous-agent C : ne peut créer que pulselab/export.py + tests/test_export.py
 briefs/
-  BRIEF_A.md, BRIEF_B.md, BRIEF_C.md   the three briefs, verbatim (identical to the ones in
-                                         Jour2/Prompt_Solutions_Day2.md given to participants)
-DELEGATION_PROMPT.md  ready-to-paste prompt for a Code agent that orchestrates the three sub-agents
+  BRIEF_A.md, BRIEF_B.md, BRIEF_C.md   les trois briefs, mot pour mot (identiques à ceux de
+                                         Jour2/Solutions_Prompts_Jour2.md donnés aux participants)
+DELEGATION_PROMPT.md  prompt prêt à coller pour un agent Code qui orchestre les trois sous-agents
 ```
 
-Copy `.kilo/`, `briefs/` and `DELEGATION_PROMPT.md` to the root of a checkout of the Day 2
-starter (`pulselab_day2_starter.zip`) before the session — not into the reference solution
-in this folder, which already contains the finished `fit.py` / `export.py` / tests.
+Copiez `.kilo/`, `briefs/` et `DELEGATION_PROMPT.md` à la racine d'un checkout du starter du Jour 2
+(`pulselab_jour2_starter.zip`) avant la session — pas dans la solution de référence de ce dossier,
+qui contient déjà les `fit.py` / `export.py` / tests terminés.
 
-## Two ways to run the demo
+## Deux façons de lancer la démo
 
-**A. Agent Manager (closest to "real" isolation).** Create the three branches
-(`docs-arch`, `feat-fit-uncertainty`, `feat-json-export`) as the lab already shows, open the
-Agent Manager, and start one session per branch, each in its own git worktree. Paste the
-matching `briefs/BRIEF_*.md` as the first message of each session, using a plain Code agent
-(no need to `@mention` a sub-agent here: the worktree already gives the isolation). This is
-the closest to "three separate people working at once" and best shows *why* isolation matters
-(a session literally cannot see the others' files).
+**A. Agent Manager (au plus près d'une « vraie » isolation).** Créez les trois branches
+(`docs-arch`, `feat-fit-uncertainty`, `feat-json-export`) comme le montre déjà le TP, ouvrez
+l'Agent Manager, et démarrez une session par branche, chacune dans son propre git worktree. Collez
+le `briefs/BRIEF_*.md` correspondant comme premier message de chaque session, avec un simple agent Code
+(inutile de `@mentionner` un sous-agent ici : le worktree apporte déjà l'isolation). C'est ce qui se
+rapproche le plus de « trois personnes distinctes travaillant en même temps » et qui montre le mieux
+*pourquoi* l'isolation compte (une session ne peut littéralement pas voir les fichiers des autres).
 
-**B. Sub-agents in one session (closest to what the lab briefs describe as "your tool's
-sub-agents if it has them").** From a single Code session at the repo root, either let the
-agent call `task` itself after you paste `DELEGATION_PROMPT.md`, or call each one directly and
-sequentially: switch to its branch, then `@explorer-a`, `@fit-b`, `@export-c`, each with its
-brief. `permission.task` in `.kilo/kilo.jsonc` allows exactly these three names; anything else
-falls back to "ask". A sub-agent only returns a summary to whoever called it — if you called it
-directly, that summary comes back to you.
+**B. Sous-agents dans une seule session (au plus près de ce que les briefs du TP décrivent par « les
+sous-agents de votre outil s'il en a »).** Depuis une seule session Code à la racine du dépôt, laissez
+l'agent appeler lui-même `task` après que vous avez collé `DELEGATION_PROMPT.md`, ou appelez chacun
+directement et à la suite : passez sur sa branche, puis `@explorer-a`, `@fit-b`, `@export-c`, chacun avec
+son brief. `permission.task` dans `.kilo/kilo.jsonc` autorise exactement ces trois noms ; tout autre
+nom retombe sur « ask ». Un sous-agent ne renvoie qu'un résumé à celui qui l'a appelé — si vous l'avez
+appelé directement, ce résumé vous revient.
 
-Either way, **you do the integration step yourself** (merge, wire `report.py` and
-`scripts/run_analysis.py`, update the golden file on purpose, run the tests) — that step is
-intentionally not delegated, per the lab and per `templates/multi-agent/README.md`
-("you are the orchestrator of record").
+Dans les deux cas, **vous faites vous-même l'étape d'intégration** (fusionner, brancher `report.py` et
+`scripts/run_analysis.py`, mettre à jour le fichier golden volontairement, lancer les tests) — cette étape
+n'est volontairement pas déléguée, conformément au TP et à `templates/multi-agent/README.md`
+(« vous êtes l'orchestrateur de référence »).
 
-## What to expect, and the honest lesson
+## À quoi s'attendre, et la leçon honnête
 
-Reference result after integration: **90 tests pass**; the golden CSV fails on purpose right
-after the merge (1 failed, 89 passed) until you regenerate it; run01 `tau_s` ≈ 3.683 ± 0.180 s.
-These numbers come from real runs of the reference code (see the Day 2 lab sheet's *Verified
-facts* table), not from a specific AI assistant.
+Résultat de référence après intégration : **90 tests passent** ; le CSV golden échoue volontairement juste
+après la fusion (1 échec, 89 réussites) jusqu'à ce que vous le régénériez ; run01 `tau_s` ≈ 3.683 ± 0.180 s.
+Ces chiffres proviennent d'exécutions réelles du code de référence (voir le tableau *Faits vérifiés* de la
+fiche de TP du Jour 2), pas d'un assistant IA particulier.
 
-The debrief question is deliberately "was it worth it?": for a change this size, briefing,
-running and integrating three sub-agents usually costs **more** than doing it in one session —
-that is the point of the exercise, not a failure of the setup.
+La question de débrief est volontairement « est-ce que ça en valait la peine ? » : pour un changement de
+cette taille, briefer, lancer et intégrer trois sous-agents coûte généralement **plus** cher que de le faire
+dans une seule session — c'est le but de l'exercice, pas un échec de la configuration.
 
-## Not verified
+## Non vérifié
 
-The `.kilo/` files here follow the Kilo Code documentation as read on kilo.ai/docs in
-September 2026 (same facts as `templates/kilo-project-kit/README.md`) and were checked for
-schema correctness only (frontmatter keys, permission values, that `permission.task` names
-agents that actually exist). They were **not run inside Kilo Code**. Before using this live,
-run the smoke test described in `templates/kilo-project-kit/README.md` and confirm on your
-installed version that: `.kilo/agents/*.md` are picked up (`/reload`, or `/agents`), a plain
-`@explorer-a` message reaches the sub-agent, and a denied `edit` path is actually blocked.
-The Kilo documentation is also not fully consistent on the default permission when no rule
-matches a tool, and on rule ordering in some examples — this config avoids the question by
-setting every rule this lab needs explicitly.
+Les fichiers `.kilo/` ci-dessus suivent la documentation de Kilo Code lue sur kilo.ai/docs en
+septembre 2026 (mêmes faits que `templates/kilo-project-kit/README.md`) et n'ont été contrôlés que pour
+la validité du schéma (clés de frontmatter, valeurs de permissions, `permission.task` nomme des
+agents qui existent réellement). Ils n'ont **pas été exécutés dans Kilo Code**. Avant de les utiliser en
+direct, lancez le test de fumée décrit dans `templates/kilo-project-kit/README.md` et vérifiez sur votre
+version installée que : les `.kilo/agents/*.md` sont pris en compte (`/reload`, ou `/agents`), un simple
+message `@explorer-a` atteint le sous-agent, et un chemin `edit` refusé est réellement bloqué.
+La documentation de Kilo n'est pas non plus totalement cohérente sur la permission par défaut quand aucune
+règle ne correspond à un outil, ni sur l'ordre des règles dans certains exemples — cette configuration
+évite la question en définissant explicitement chaque règle dont ce TP a besoin.

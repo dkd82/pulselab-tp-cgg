@@ -1,20 +1,20 @@
-# Prompt for an agent that may delegate
+# Prompt pour un agent qui peut déléguer
 
-Use with a Code or Plan agent. Adapt the names to the subagents defined in your project (`.kilo/agents/`).
+À utiliser avec un agent Code ou Plan. Adaptez les noms aux sous-agents définis dans votre projet (`.kilo/agents/`).
 
 ```
-Task: {{task_in_one_sentence}}
+Tâche : {{task_in_one_sentence}}
 
-You may use subagents, but only for pieces that are independent:
-- `explore` (built-in, read-only) to map {{area}} and return a summary of at most 10 lines;
-- `test-writer` to write the tests for {{function}} in tests/ only;
-- `reviewer` (fresh context) to review the final diff.
+Vous pouvez utiliser des sous-agents, mais uniquement pour les morceaux indépendants :
+- `explore` (intégré, lecture seule) pour cartographier {{area}} et renvoyer un résumé de 10 lignes maximum ;
+- `test-writer` pour écrire les tests de {{function}} dans tests/ uniquement ;
+- `reviewer` (contexte neuf) pour relire le diff final.
 
-Rules:
-- Give each subagent a written brief: goal, allowed files, out of scope, deliverable, check.
-- Never let two subagents edit the same file.
-- Do the integration yourself (wiring, command line, golden files), run `python -m pytest -q`, and show me the diff before anything is committed.
-- If the task is small or tightly coupled, do it yourself without subagents and tell me why.
+Règles :
+- Donnez à chaque sous-agent un brief écrit : objectif, fichiers autorisés, hors périmètre, livrable, vérification.
+- Ne laissez jamais deux sous-agents modifier le même fichier.
+- Faites l'intégration vous-même (câblage, ligne de commande, fichiers golden), lancez `python -m pytest -q`, et montrez-moi le diff avant de commiter quoi que ce soit.
+- Si la tâche est petite ou fortement couplée, faites-la vous-même sans sous-agents et dites-moi pourquoi.
 ```
 
-You can also call a subagent directly: `@reviewer review my last change`.
+Vous pouvez aussi appeler un sous-agent directement : `@reviewer relis mon dernier changement`.
